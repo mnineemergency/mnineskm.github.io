@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M9 Shan Koe Mee</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .card {
+            display: inline-block;
+            width: 100px;
+            height: 140px;
+            border: 1px solid #000;
+            margin: 5px;
+            position: relative;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .card .rank {
+            font-size: 24px;
+            font-weight: bold;
+            position: absolute;
+            top: 5px;
+            left: 5px;
+        }
+        .card .suit {
+            font-size: 20px;
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+        }
+        .button {
+            padding: 10px 20px;
+            margin: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>M9 Shan Koe Mee</h1>
+    <div id="cards"></div>
+    <button class="button" onclick="dealCards()">ကဒ်များထုတ်ပါ</button>
+
+    <script>
+        function getCard() {
+            const suits = ['♦', '♣', '♥', '♠'];
+            const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+            const suit = suits[Math.floor(Math.random() * suits.length)];
+            const rank = ranks[Math.floor(Math.random() * ranks.length)];
+            return { suit, rank };
+        }
+
+        function displayCard(card) {
+            return `
+                <div class="card">
+                    <div class="rank">${card.rank}</div>
+                    <div class="suit">${card.suit}</div>
+                </div>
+            `;
+        }
+
+        function dealCards() {
+            const cardsContainer = document.getElementById('cards');
+            cardsContainer.innerHTML = '';
+            for (let i = 0; i < 13; i++) {
+                const card = getCard();
+                cardsContainer.innerHTML += displayCard(card);
+            }
+        }
+    </script>
+</body>
+</html>
